@@ -1,0 +1,239 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<%@ Register TagPrefix="KW" TagName="SideBar" Src="Sidebar.ascx" %>
+
+<!DOCTYPE html>
+
+<!DOCTYPE html lang="da">
+<head runat="server">
+    <title>KulturWatch</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="KulturWatch er Jyllands-Postens bud på dit nye kulturmedie, der fornyer din måde at få nyheder på. Her finder du begivenheder, mulighed for at følge kategorier, offline adgang og meget mere.">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#4a2f74">
+    <link rel="shortcut icon" href="/img/icons/favicon.ico">
+    <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-85778628-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body id="bodyTag" runat="server">
+    <h1 class="hidden">KulturWatch</h1>
+    <div class="c-network-notification" id="networkNotification">
+        <div class="o-page c-highlighted u-remove-padding">
+            <div class="o-page__col-lg-12 o-page__col-md-12 o-page__col-sm-12 o-page__col-xs-12 text-center">
+                <p>
+                    Det ser ud til, at du har mistet netværksforbindelsen.
+                    <br />
+                    Fortsæt din færden på KulturWatch i offlinetilstand, hvor du kan læse dine gemte artikler.
+                    <br />
+                    <a href="/" class="btn btn-primary u-margin-top-1">Gå til offlinetilstand <i class="fa fa-angle-right"></i></a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="o-page">
+        <header class="clearfix">
+            <div class="o-page__col-lg-5 o-page__col-md-5 o-page__col-sm-7 o-page__col-xs-8 u-remove-padding c-logo">
+                <a href="/Default.aspx">
+                    <img src="/img/logo.png" alt="KulturWatch" />
+                </a>
+            </div>
+            <nav class="c-navigation c-navigation--utility navbar o-page__col-lg-7 o-page__col-md-7 o-page__col-sm-4 o-page__sm-offset-1 o-page__col-xs-12">
+                <div class="navbar-header">
+                    <h2 class="hidden">Utilitynavigation</h2>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/Archive.aspx">Arkiv</a></li>
+                        <asp:ListView ID="lvNavUtility" runat="server">
+                            <ItemTemplate>
+                                <li><a href="/service/<%# Eval("URL") %>.aspx"><%# Eval("PageName") %></a></li>
+                            </ItemTemplate>
+                        </asp:ListView>
+                        <li><a href="/Contact.aspx">Kontakt</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <nav class="c-navigation c-navigation--primary navbar o-page__col-lg-12 o-page__col-md-12 o-page__col-sm-12 o-page__col-xs-12">
+                <h1 class="hidden">Navigation</h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav" id="categories">
+                        <li><a href="/Default.aspx">Forside</a></li>
+                        <asp:ListView ID="lvNav" runat="server">
+                            <ItemTemplate>
+                                <li><a href="/<%# Eval("CategoryURL") %>"><%# Eval("CategoryName") %></a></li>
+                            </ItemTemplate>
+                        </asp:ListView>
+                    </ul>
+                    <ul class="c-navigation__buttons nav navbar-nav">
+                        <li><a href="/Search.aspx"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                        <asp:PlaceHolder ID="phNavStandard" runat="server">
+                            <li><a href="/Login.aspx">Log ind</a></li>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="phNavLoggedIn" runat="server" Visible="false">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/Feed.aspx">Mit feed</a></li>
+                                    <li><a href="/SavedArticles.aspx">Gemte artikler</a></li>
+                                    <li><a href="/MyProfile.aspx">Mine oplysninger</a></li>
+                                    <li><a href="/Logout.aspx">Log ud</a></li>
+                                </ul>
+                            </li>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="phNavBusiness" runat="server" Visible="false">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <asp:Label ID="lblUserName" runat="server" Text="Label"></asp:Label>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/Feed.aspx">Mit feed</a></li>
+                                    <li><a href="/SavedArticles.aspx">Gemte artikler</a></li>
+                                    <li><a href="Events.aspx">Mine begivenheder</a></li>
+                                    <li><a href="/MyProfile.aspx">Mine oplysninger</a></li>
+                                    <li><a href="/Logout.aspx">Log ud</a></li>
+                                </ul>
+                            </li>
+                        </asp:PlaceHolder>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <form id="form1" runat="server">
+            <asp:Panel ID="adminNav" Visible="false" runat="server" CssClass="clearfix">
+                <nav class="c-navigation c-navigation--primary c-navigation--admin navbar o-page__col-lg-12 o-page__col-md-12 o-page__col-sm-12 o-page__col-xs-12 c-highlighted">
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/AdminCreateNews.aspx">Opret nyhed</a></li>
+                            <li><a href="/AdminNews.aspx">Nyheder</a></li>
+                            <li><a href="/AdminEvents.aspx">Begivenheder</a></li>
+                            <li><a href="/AdminCategories.aspx">Kategorier</a></li>
+                            <li><a href="/AdminPages.aspx">Sider</a></li>
+                            <li><a href="/AdminUsers.aspx">Brugere</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </asp:Panel>
+            <asp:ContentPlaceHolder ID="body" runat="server">
+            </asp:ContentPlaceHolder>
+        </form>
+        <footer class="c-footer clearfix u-margin-top-2">
+            <div class="o-page__col-lg-3 o-page__col-md-3 o-page__col-sm-6 o-page__col-xs-12">
+                <h2 class="h3">Sektioner</h2>
+                <ul class="o-list o-list--stripped">
+                    <asp:ListView ID="lvSections" runat="server">
+                        <ItemTemplate>
+                            <li><a href="/<%# Eval("CategoryURL") %>"><%# Eval("CategoryName") %></a></li>
+                        </ItemTemplate>
+                    </asp:ListView>
+                </ul>
+            </div>
+            <div class="o-page__col-lg-3 o-page__col-md-3 o-page__col-sm-6 o-page__col-xs-12">
+                <h2 class="h3">Redaktør</h2>
+                Søren Larsen<br />
+                <a href="mailto:soeren@kulturwatch.dk">soeren@kulturwatch.dk</a><br />
+                Tlf: <a href="tel:00000001">00 00 00 01</a>
+
+                <h2 class="h3">Ansv. direktør</h2>
+                Anders Heering
+                
+                <h2 class="h3">Udgiver</h2>
+                <a href="">JP/Politikens Hus</a>
+            </div>
+            <div class="o-page__col-lg-3 o-page__col-md-3 o-page__col-sm-6 o-page__col-xs-12">
+                <h2 class="h3">Annoncering og salg</h2>
+                <h3 class="h4">Abonnement</h3>
+                Mikael Justesen<br />
+                <a href="">mikael@infowatch.dk</a><br />
+                Tlf: <a href="">70 77 74 42</a>
+
+                <h3 class="h4">Annoncering</h3>
+                Esben Albertsen<br />
+                <a href="">esben@infowatch.dk</a><br />
+                Tlf: <a href="">71 71 74 22</a>
+            </div>
+            <div class="o-page__col-lg-3 o-page__col-md-3 o-page__col-sm-6 o-page__col-xs-12">
+                <h2 class="h3">Abonnement</h2>
+                <p>Prøv KulturWatch gratis eller få tilbud på et abonnement, der passer til lige netop dig eller din virksomhed.</p>
+
+                <a href="">mikael@infowatch.dk</a><br />
+                <a href="">Tlf.: 7077 7442</a>
+
+                <h2 class="h3">Adresse</h2>
+                KulturWatch<br />
+                St. Regnegade 12, 2. sal<br />
+                1110 København K<br />
+                Tlf.: <a href="">00 00 00 01</a>
+            </div>
+            <div class="c-footer__message o-page__col-lg-12 o-page__col-md-12 o-page__col-sm-12 o-page__col-xs-12">
+                <p>Copyright &copy; 2017 KulturWatch - Alt materiale på denne side er omfattet af gældende lov om ophavsret</p>
+            </div>
+        </footer>
+        <section class="c-cookie-notification" id="cookieNotification">
+            <h1 class="hidden">Cookienotifikation</h1>
+            <div class="o-page c-highlighted u-remove-padding">
+                <div class="o-page__col-lg-12 o-page__col-md-12 o-page__col-sm-12 o-page__col-xs-12 text-center">
+                    <p>
+                        Watch Medier anvender cookies til at huske dine indstillinger og statistik.<a role="button" id="cookieNotificationClose"><i class="fa fa-close fa-2x pull-right u-padding-left-1"></i></a>
+                        <br />
+                        Når du fortsætter med at bruge websitet, accepterer du samtidig brugen af cookies.  <a href="/service/om.aspx">Læs mere</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <asp:ContentPlaceHolder ID="scripts" runat="server">
+    </asp:ContentPlaceHolder>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="/js/intro.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/cookie.js"></script>
+    <script src="/js/save.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                        .register('/sw.js')
+                        .then();
+        }
+
+        window.addEventListener('online', function (e) {
+            document.getElementById('networkNotification').style.display = 'none';
+        }, false);
+
+        window.addEventListener('offline', function (e) {
+            document.getElementById('networkNotification').style.display = 'block';
+        }, false);
+    </script>
+</body>
+</!DOCTYPE>

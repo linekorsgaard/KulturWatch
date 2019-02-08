@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html lang="da">
+<html>
+<head>
+    <title>KulturWatch</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#4a2f74">
+    <link rel="shortcut icon" href="/img/icons/favicon.ico">
+    <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+    <section class="o-page__row o-page__col-lg-12 o-page__col-md-12 o-page__col-sm-12 o-page__col-xs-12">
+        <h1 class="pull-left">Gemte artikler</h1>
+        <button type="button" id="btnDeleteArticles" class="btn btn-primary pull-right u-margin-top-2"><i class="fa fa-close u-margin-right-half"></i> Fjern alle gemte artikler</button>
+    </section>
+    <div class="o-page__row o-page__col-lg-12 o-page__col-md-12 o-page__col-sm-12 o-page__col-xs-12">
+        <div id="listSavedArticles"></div>
+    </div>
+    <script src="/js/save.js"></script>
+    <script async src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script async src="/js/bootstrap.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                        .register('/sw.js')
+                        .then(function () { console.log("Service Worker Registered"); });
+        }
+    </script>
+</body>
+</html>
