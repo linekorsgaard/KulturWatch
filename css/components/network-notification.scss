@@ -1,0 +1,12 @@
+﻿.c-network-notification {
+    background-color: $primary-brand-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: .5em 0;
+    font-weight: bold;
+    display: none;
+    color: #fff;
+    z-index: 999;
+}

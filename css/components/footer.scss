@@ -1,0 +1,19 @@
+﻿$footer-background-color: $primary-brand-color !default;
+$footer-link-color: #fff !default;
+$footer-text-color: #fff !default;
+
+.c-footer {
+    background-color: $footer-background-color;
+    color: $footer-text-color;
+    padding: 15px;
+    clear: both;
+
+    a {
+        color: $footer-link-color;
+        text-decoration: underline;
+    }
+
+    &__message {
+        margin-top: 1em;
+    }
+}

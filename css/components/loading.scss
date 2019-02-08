@@ -1,0 +1,18 @@
+﻿.c-loading {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: $primary-brand-color;
+    color: #fff;
+
+    //http://vanseodesign.com/css/vertical-centering/
+    &__content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 30%;
+        width: 50%;
+        margin: -5% 0 0 -25%;
+    }
+}

@@ -1,0 +1,64 @@
+﻿@media (max-width: 768px) {
+    .navbar-header{
+        margin-top: -48px;
+    }
+}
+
+$primary-navigation-background-color: $primary-brand-color !default;
+$primary-navigation-link-color: #fff !default;
+$utility-navigation-link-color: $discrete-text-color;
+$admin-navigation-link-color: #333;
+
+.c-navigation {
+    padding: 0;
+
+    &--primary {
+        background-color: $primary-navigation-background-color;
+    
+        a {
+            color: $primary-navigation-link-color;
+        }
+    }
+
+    &--utility {
+        margin-bottom: 0;
+
+        @media (min-width: 768px) {
+            div {
+                float: right;
+                margin-bottom: 15px;
+            }
+        }
+
+        a {
+            color: $discrete-text-color;
+        }
+    }
+
+    &--admin {
+        margin-top: -20px;
+
+        a {
+            color: $admin-navigation-link-color;
+        }
+    }
+
+    &__buttons {
+        float: right;
+        
+        @media (max-width: 768px) {
+            float: left;
+            width: 100%;
+        }
+        
+        > li {
+            background-color: #44286e;
+            margin-left: 15px;
+        }
+
+        .fa {
+            font-size: 18px;
+        }
+    }
+}
+    

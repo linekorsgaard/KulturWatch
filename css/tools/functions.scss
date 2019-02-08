@@ -1,0 +1,9 @@
+﻿@function typescale($level) {
+    @if variable-exists(typescale) and
+        type_of($typescale) == map and
+        map_has_key($typescale, $level) {
+            @return em(map-get($typescale, $level));
+    }
+
+    @return initial;
+}

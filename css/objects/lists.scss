@@ -1,0 +1,17 @@
+﻿.o-list {
+    padding-left: 0;
+    list-style-type: none;
+
+    &--horizontal {
+        list-style-type: none;
+
+        li {
+            display: inline;
+            padding-right: 20px;
+        }
+    }
+
+    li {
+        line-height: 2;
+    }
+}

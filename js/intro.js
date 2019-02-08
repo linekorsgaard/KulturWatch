@@ -1,0 +1,1 @@
+$(document).ready(function () { if (document.cookie.indexOf("IntroShown=true") < 0) { $("#introModal").modal("show"); $("#introModalClose").click(function () { $("#introModal").modal("hide"); });  document.cookie = "IntroShown=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/"; } });
